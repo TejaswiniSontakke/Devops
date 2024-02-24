@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation System</h1>
+        <form id="recommendationForm">
+            <label for="genre">Select your favorite genre:</label>
+            <select id="genre" name="genre">
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="horror">Horror</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="thriller">Thriller</option>
+            </select>
+
+            <label for="mood">Select your current mood:</label>
+            <select id="mood" name="mood">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="excited">Excited</option>
+                <option value="relaxed">Relaxed</option>
+                <option value="scared">Scared</option>
+            </select>
+
+            <input type="submit" value="Get Recommendation">
+        </form>
+
+        <div id="recommendationResult" style="display: none;">
+            <h2>Your Recommended Movie:</h2>
+            <p id="recommendedMovie"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('recommendationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var genre = document.getElementById('genre').value;
+            var mood = document.getElementById('mood').value;
+            var recommendation = getMovieRecommendation(genre, mood);
+            document.getElementById('recommendedMovie').textContent = recommendation;
+            document.getElementById('recommendationResult').style.display = 'block';
+        });
+
+        function getMovieRecommendation(genre, mood) {
+            // This function could be replaced with a more sophisticated recommendation algorithm
+            // Here, it's a simple mapping of genre and mood to a movie
+            var movies = {
+                action: {
+                    happy: 'The Avengers',
+                    sad: 'Gladiator',
+                    excited: 'Mad Max: Fury Road',
+                    relaxed: 'Die Hard',
+                    scared: 'Jurassic Park'
+                },
+                comedy: {
+                    happy: 'Superbad',
+                    sad: 'The Hangover',
+                    excited: '21 Jump Street',
+                    relaxed: 'Dumb and Dumber',
+                    scared: 'Ghostbusters'
+                },
+                drama: {
+                    happy: 'Forrest Gump',
+                    sad: 'The Shawshank Redemption',
+                    excited: 'Inception',
+                    relaxed: 'The Godfather',
+                    scared: 'The Silence of the Lambs'
+                },
+                horror: {
+                    happy: 'Shaun of the Dead',
+                    sad: 'The Babadook',
+                    excited: 'Get Out',
+                    relaxed: 'The Cabin in the Woods',
+                    scared: 'The Conjuring'
+                },
+                romance: {
+                    happy: 'The Notebook',
+                    sad: 'Titanic',
+                    excited: 'Crazy, Stupid, Love',
+                    relaxed: 'Pride and Prejudice',
+                    scared: 'Warm Bodies'
+                },
+                'sci-fi': {
+                    happy: 'Star Wars: A New Hope',
+                    sad: 'Blade Runner',
+                    excited: 'The Matrix',
+                    relaxed: 'Interstellar',
+                    scared: 'Alien'
+                },
+                thriller: {
+                    happy: 'The Bourne Identity',
+                    sad: 'Gone Girl',
+                    excited: 'Se7en',
+                    relaxed: 'The Sixth Sense',
+                    scared: 'Psycho'
+                }
+            };
+
+            return movies[genre][mood];
+        }
+    </script>
+</body>
+</html>
